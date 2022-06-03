@@ -16,6 +16,16 @@ Class {
 	#category : #'Depot-Core'
 }
 
+{ #category : #'as yet unclassified' }
+DpEntity class >> viewNamed: aString [
+  ^ self views detect: [ :m | ((m pragmaAt: #dpView:) argumentAt: 1) = aString ]
+]
+
+{ #category : #'as yet unclassified' }
+DpEntity class >> views [
+  ^ self methods select: [ :m | m hasPragmaNamed: #dpView: ]
+]
+
 { #category : #accessing }
 DpEntity class >> xtMapping [ 
 	^ XtEntityMapping withAll: { 

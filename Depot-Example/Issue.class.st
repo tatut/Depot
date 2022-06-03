@@ -85,6 +85,15 @@ Issue >> summary: anObject [
 	summary := anObject
 ]
 
+{ #category : #'as yet unclassified' }
+Issue >> summaryView: h [
+  <dpView: 'summary'>
+  "make this a link"
+  h span: { #class -> 'issue-summary' } with: [ 
+	  h span: key; span: summary
+  ]
+]
+
 { #category : #accessing }
 Issue >> type [
 

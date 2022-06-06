@@ -21,3 +21,15 @@ DpConfig class >> uniqueInstance: aDpConfig [
   Config := aDpConfig 
 
 ]
+
+{ #category : #accessing }
+DpConfig >> url [
+
+	^ url
+]
+
+{ #category : #accessing }
+DpConfig >> url: anObject [
+
+	url := anObject
+]

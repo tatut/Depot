@@ -39,7 +39,8 @@ DpFirstRun >> renderOn: h [
 				].
 			urlOk ifNotNil: [ 
 				h div: (urlOk ifTrue:'OK' ifFalse: 'ERROR'), ' ', urlError.
-				h button: { #disabled -> urlOk not. #onClick -> [ self save ] } ].
+				h button: { #disabled -> urlOk not. #onClick -> [ self save ] } with: 'Save and continue'.
+			]
 	]]] 
 	
 ]
@@ -47,7 +48,7 @@ DpFirstRun >> renderOn: h [
 { #category : #actions }
 DpFirstRun >> save [
 	DpConfig uniqueInstance: (DpConfig new url: url).
-	ctx go: DpRouteState
+	ctx go: (DpRouter new matchState: (DpRootState new))
 ]
 
 { #category : #tests }

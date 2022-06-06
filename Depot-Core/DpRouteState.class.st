@@ -6,3 +6,8 @@ Class {
 	#superclass : #LWPushStateBase,
 	#category : #'Depot-Core'
 }
+
+{ #category : #'as yet unclassified' }
+DpRouteState >> bodyComponent [
+	self subclassResponsibility 
+]

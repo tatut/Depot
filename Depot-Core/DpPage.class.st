@@ -4,6 +4,13 @@ Class {
 	#category : #'Depot-Core'
 }
 
+{ #category : #public }
+DpPage class >> handleRequest: aRequest [
+  Transcript show: aRequest uri;cr.
+	aRequest uri path = '__liveweb' ifTrue: [ ^ LWPageConnection value: aRequest ].
+	^ self new value: aRequest. 
+]
+
 { #category : #accessing }
 DpPage class >> value: req [
 	^ self new value: req
@@ -11,15 +18,15 @@ DpPage class >> value: req [
 
 { #category : #accessing }
 DpPage >> body: _args [
-  | config | 
-  config := DpConfig uniqueInstance.
-  config ifNil: [ ^ DpFirstRun new ].
-  ^ DpMain new 
+  | state |
+  state := self initialPushState.  
+  ^ LWSingleContainer new child: state bodyComponent 
 ]
 
 { #category : #'push state handling' }
 DpPage >> initialPushState [ 
- ^ {  }
+ DpConfig uniqueInstance ifNil: [ ^ DpFirstRunState new ].
+ ^ DpRouter new match: args uri.
 ]
 
 { #category : #'as yet unclassified' }
@@ -31,7 +38,9 @@ DpPage >> prepareCtx [
 
 { #category : #'push state handling' }
 DpPage >> pushStateChanged: newPushState [
-	body state: newPushState 
+  | state |
+  state := DpRouter new fromPushStateJSON: newPushState.
+	body child: state bodyComponent 
 ]
 
 { #category : #'as yet unclassified' }

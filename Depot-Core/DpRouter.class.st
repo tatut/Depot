@@ -8,7 +8,7 @@ Class {
 DpRouter >> initialize [
 	super initialize.
 	self 
-	  route: '/' as: DpRouteState;
+	  route: '/' as: DpRootState;
 	  route: '/:entity' as: DpEntityListingState;
 	  route: '/:entity/create' as: DpEntityCreateState;
 	  route: '/:entity/:id' as: DpEntityViewState. 

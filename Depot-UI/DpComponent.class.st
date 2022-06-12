@@ -11,7 +11,7 @@ Class {
 DpComponent >> entityLinkAttrs: anEntityClass [
   | router route |
   router := self router.
-  route := router matchState: (DpEntityListingState new entity: anEntityClass).
+  route := router matchState: (DpEntityListingState new entity: anEntityClass name).
   ^ { #href -> ('/',anEntityClass name) .
       #onclick -> (ctx goJS: route)  }
 ]

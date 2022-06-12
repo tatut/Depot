@@ -33,7 +33,15 @@ DpEntityListing >> performQuery: newFilters [
 	listingComponent child: (LWBlockContainer new block: [ :h | h div: 'Loading...' ]).
 	[ | results |
 	  results := (self xt q: entityClass where: [ :e | 
-			entityClass dpMapping search: e
+		  | where |
+		  where := nil.
+       (entityClass dpMapping fieldMappings select: #searchable) do: [ :sm |
+	      (newFilters perform: sm getter) ifNotNil: [ :val | 
+		     | clause |
+		     clause := sm search: (e perform: sm getter) value: val.
+		     where := where ifNil: [ clause ] ifNotNil: [ where & clause ]
+		   ]].
+        where
 		]) .
 	  results isEmpty 
 	    ifTrue: [ listingComponent child: (LWBlockContainer new block: [:h | h div: 'No results' ]) ]

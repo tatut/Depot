@@ -65,6 +65,12 @@ DpStyles >> centeredDialogPanel [
 ]
 
 { #category : #'as yet unclassified' }
+DpStyles >> flexCol: s [
+	s display: 'flex'; flexDirection: 'column'.
+
+]
+
+{ #category : #'as yet unclassified' }
 DpStyles >> flexLeftToRight [
  ^ self style: [ :s | s
 	  display: #flex;
@@ -76,6 +82,46 @@ DpStyles >> flexTopToBottom [
  ^ self style: [ :s | s
 	  display: #flex;
 	  flexDirection: #column ]
+]
+
+{ #category : #'as yet unclassified' }
+DpStyles >> formField [ 
+	^ self style: [ :s | s 
+		display: #block
+	]
+
+]
+
+{ #category : #'as yet unclassified' }
+DpStyles >> formFieldError [ 
+	^ self style: [ :s | 
+		s child: 'input' with: [ :input |
+				input borderColor: #red; borderWidth: 3px ]]
+
+]
+
+{ #category : #'as yet unclassified' }
+DpStyles >> formFieldLabel [ 
+	^ self style: [ :s | s 
+			display: 'inline-block';
+			width: 15vw  ]
+
+]
+
+{ #category : #'as yet unclassified' }
+DpStyles >> formInput: hasError [
+	^ self style: [ :s | 
+		hasError 
+		  ifTrue: [ s borderColor: #red; borderWidth: 1px ]
+		  ifFalse: [ s backgroundColor: #wheat ]
+		 ]
+
+]
+
+{ #category : #'as yet unclassified' }
+DpStyles >> formInputAndError [ 
+	^ self style: [ :s | self flexCol: s ]
+
 ]
 
 { #category : #'as yet unclassified' }

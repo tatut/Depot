@@ -33,8 +33,7 @@ DpEntityListing >> performQuery: newFilters [
 	listingComponent child: (LWBlockContainer new block: [ :h | h div: 'Loading...' ]).
 	[ | results |
 	  results := (self xt q: entityClass where: [ :e | 
-		"FIXME: dummy query as we don't have the form yet"
-		(e perform: entityClass instVarNames first) isPresent 
+			entityClass dpMapping search: e
 		]) .
 	  results isEmpty 
 	    ifTrue: [ listingComponent child: (LWBlockContainer new block: [:h | h div: 'No results' ]) ]

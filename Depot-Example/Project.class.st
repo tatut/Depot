@@ -12,7 +12,7 @@ Class {
 { #category : #'as yet unclassified' }
 Project class >> dpMapping [
 	^ XtEntityMapping withAll: { 
-	  DpStringField of: #':project/name' -> #name.
+	  (DpStringField of: #':project/name' -> #name) beSearchable.
 	  DpStringField of: #':project/description' -> #description 
 	}
 ]

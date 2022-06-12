@@ -1,10 +1,11 @@
+"
+I am a form for editing filter values to search entities by.
+"
 Class {
 	#name : #DpFiltersForm,
-	#superclass : #DpComponent,
+	#superclass : #LWEditForm,
 	#instVars : [
-		'onUpdate',
-		'filterComponents',
-		'entityClass'
+		'onUpdate'
 	],
 	#category : #'Depot-UI'
 }
@@ -12,6 +13,11 @@ Class {
 { #category : #accessing }
 DpFiltersForm >> entityClass: aClass [
   entityClass := aClass
+]
+
+{ #category : #'as yet unclassified' }
+DpFiltersForm >> fieldDefinitions [ 
+  ^ entityClass dpMapping fieldMappings select: #searchable
 ]
 
 { #category : #accessing }
@@ -23,7 +29,7 @@ DpFiltersForm >> onUpdate: anObject [
 { #category : #rendering }
 DpFiltersForm >> renderOn: h [
   h div: [
-	h span: 'filter form here';
-	  button: { #onclick -> [ onUpdate value: 'FIXME' ] } with: 'Fetch' 
+	super renderOn: h.
+	h button: { #onclick -> [ onUpdate value: self entity ] } with: 'Fetch' 
 ]
 ]

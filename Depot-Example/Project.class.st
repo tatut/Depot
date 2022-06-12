@@ -9,6 +9,14 @@ Class {
 	#category : #'Depot-Example'
 }
 
+{ #category : #'as yet unclassified' }
+Project class >> dpMapping [
+	^ XtEntityMapping withAll: { 
+	  DpStringField of: #':project/name' -> #name.
+	  DpStringField of: #':project/description' -> #description 
+	}
+]
+
 { #category : #accessing }
 Project >> description [
 
@@ -43,4 +51,14 @@ Project >> name [
 Project >> name: anObject [
 
 	name := anObject
+]
+
+{ #category : #'as yet unclassified' }
+Project >> summaryView: h [
+  <dpView: 'summary'>
+  h div: [ 
+	 h div: [ h b: 'Name:'; span: name ];
+	   div: [ h b: 'Description: '; span: description ]
+	 ]
+
 ]

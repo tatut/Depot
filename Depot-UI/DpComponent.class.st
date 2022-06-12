@@ -21,3 +21,9 @@ DpComponent >> router [
   ^ DpRouter new
 
 ]
+
+{ #category : #'as yet unclassified' }
+DpComponent >> xt [ 
+	"Get an XTDB client instance."
+	^ XtClient new url: DpConfig uniqueInstance url
+]

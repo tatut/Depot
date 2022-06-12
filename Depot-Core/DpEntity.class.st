@@ -17,6 +17,12 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+DpEntity class >> dpMapping [ 
+	"Return the Depot specialized XTDB mapping for this class, subclasses must implement."
+	self subclassResponsibility 
+]
+
+{ #category : #'as yet unclassified' }
 DpEntity class >> viewNamed: aString [
   ^ self views detect: [ :m | ((m pragmaAt: #dpView:) argumentAt: 1) = aString ]
 ]
@@ -28,9 +34,9 @@ DpEntity class >> views [
 
 { #category : #accessing }
 DpEntity class >> xtMapping [ 
-	^ XtEntityMapping withAll: { 
+	^ (XtEntityMapping withAll: { 
 		#':xt/id' -> #_xtId
-	 }
+	 }), (self dpMapping)
 ]
 
 { #category : #accessing }
@@ -43,4 +49,9 @@ DpEntity >> _xtId [
 DpEntity >> _xtId: anObject [
 
 	_xtId := anObject
+]
+
+{ #category : #rendering }
+DpEntity >> render: h view: viewName [ 
+	self perform: (self class viewNamed: viewName) selector with: h
 ]

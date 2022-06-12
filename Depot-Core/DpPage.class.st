@@ -19,8 +19,8 @@ DpPage class >> value: req [
 { #category : #accessing }
 DpPage >> body: _args [
   | state |
-  state := self initialPushState.  
-  ^ LWSingleContainer new child: state bodyComponent 
+  state := self initialPushState. 
+  ^ DpApp new setContent: state bodyComponent 
 ]
 
 { #category : #'push state handling' }
@@ -40,7 +40,7 @@ DpPage >> prepareCtx [
 DpPage >> pushStateChanged: newPushState [
   | state |
   state := DpRouter new fromPushStateJSON: newPushState.
-	body child: state bodyComponent 
+	body setContent: state bodyComponent 
 ]
 
 { #category : #'as yet unclassified' }

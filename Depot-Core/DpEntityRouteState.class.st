@@ -24,3 +24,12 @@ DpEntityRouteState >> entity: anObject [
 
 	entity := anObject
 ]
+
+{ #category : #accessing }
+DpEntityRouteState >> entityClass [ 
+  | cls |
+  cls := Smalltalk classNamed: entity.
+  cls ifNil: [ Error signal: 'No such class' ].
+  (cls superclass = DpEntity) ifFalse: [ Error signal: 'Invalid class' ].
+  ^ cls
+]

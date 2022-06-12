@@ -8,6 +8,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-DpRouteState >> bodyComponent [
-	self subclassResponsibility 
+DpRouteState >> bodyComponent [ 
+	^ LWBlockContainer new block: [ :h | h div: 'Please implement component for route: ', (STON toString: self) ]
 ]

@@ -16,6 +16,11 @@ Class {
 	#category : #'Depot-Core'
 }
 
+{ #category : #accessing }
+DpEntity class >> builder [
+  ^ DpEntityBuilder new 
+]
+
 { #category : #'as yet unclassified' }
 DpEntity class >> dpMapping [ 
 	"Return the Depot specialized XTDB mapping for this class, subclasses must implement."

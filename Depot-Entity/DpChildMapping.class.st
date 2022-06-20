@@ -11,3 +11,9 @@ DpChildMapping >> asDpMappingSource [
 	  << ' to: '; << entityClass name
 	]
 ]
+
+{ #category : #accessing }
+DpChildMapping >> searchable [ 
+  ^ false
+
+]

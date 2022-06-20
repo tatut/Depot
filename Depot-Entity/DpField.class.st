@@ -22,7 +22,8 @@ DpField class >> of: attributeGetterAssociation [
 DpField >> asDpMappingSource [
   "Return this as source code for building a mapping."
   ^ String streamContents: [ :out | out 
-	  << self class name; << ' of: #'''; << attribute; << ''' -> #'; << getter 
+	   << '('; << self class name; << ' of: #'''; << attribute; << ''' -> #'; << getter; << ')'.
+	   searchable ifTrue: [ out << ' beSearchable' ] 
 	   ]
 ]
 
